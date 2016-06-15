@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B9F7E11-B52A-403D-A8F4-BDE9688FCDCA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dupper.Firebird</RootNamespace>
+    <AssemblyName>Dupper.Firebird</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.0.5.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.5.0.5\lib\net45\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\DapperExtensions.cs" />
+    <Compile Include="Domain\DynamicQuery.cs" />
+    <Compile Include="Domain\EntityBase.cs" />
+    <Compile Include="Domain\Events\DomainEvents.cs" />
+    <Compile Include="Domain\Events\IDomainEvent.cs" />
+    <Compile Include="Domain\Events\IDomainEventHandler.cs" />
+    <Compile Include="Domain\Events\IEventContainer.cs" />
+    <Compile Include="Domain\IAggregateRoot.cs" />
+    <Compile Include="Domain\IDataMapper.cs" />
+    <Compile Include="Domain\IEnumerableExtensions.cs" />
+    <Compile Include="Domain\IReadOnlyRepository.cs" />
+    <Compile Include="Domain\IRepository.cs" />
+    <Compile Include="Domain\IValidatable.cs" />
+    <Compile Include="Domain\QueryResult.cs" />
+    <Compile Include="Domain\Repository.cs" />
+    <Compile Include="Domain\ValidationError.cs" />
+    <Compile Include="Domain\ValidationErrors.cs" />
+    <Compile Include="FBSQLHelpers\FBQueryCreator.cs" />
+    <Compile Include="FBSQLHelpers\Tables.cs" />
+    <Compile Include="Helpers\AttributeExtensions.cs" />
+    <Compile Include="Helpers\ConfigHelper.cs" />
+    <Compile Include="Helpers\dbHelpers.cs" />
+    <Compile Include="Helpers\PropertyInfoExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Content Include="SQLs\SqlFieldsForTableDelphi.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SQLs\SqlFieldsForTable.sql" />
+    <Resource Include="SQLs\SqlFieldsName.sql" />
+    <Resource Include="SQLs\SqlKeyFieldsForTable.sql" />
+    <Resource Include="SQLs\SqlStoredProcedures.sql" />
+    <Resource Include="SQLs\SqlTablesNames.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
